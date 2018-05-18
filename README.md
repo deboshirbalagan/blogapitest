@@ -1,9 +1,3 @@
 # blogapitest
 Django blog with restless API
 
-#requirements
-
-Django==2.0.5
-pytz==2018.4
-restless==2.1.1
-six==1.11.0
