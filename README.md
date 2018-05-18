@@ -1,2 +1,2 @@
 # blogapitest
-blog with restless api
+Django blog with restless API
