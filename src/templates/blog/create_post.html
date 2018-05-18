@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Create Post
+{% endblock title %}
+
+
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 offset-sm-3">
+<form method="POST" action="">
+    {% csrf_token %}
+  <div class="form-group">
+    {{form.author}}
+  </div>
+
+  <div class="form-group">
+      <label class="form-check-label" for="text_input">Text</label>
+    {{form.text}}
+  </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+           </div>
+    </div>
+  </div>
+
+{% endblock content %}
