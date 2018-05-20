@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post
 from .forms import PostForm
 from django.db.models import Q
+from django.http import Http404
 
 def index(request):
 
@@ -20,8 +21,13 @@ def index(request):
     return render(request, 'blog/index.html', context)
 
 def detail(request, id=None):
+    try:
 
-    post = get_object_or_404(Post, id=id)
+        post = get_object_or_404(Post, id=id)
+
+    except Http404:
+
+        return render(request, 'blog/404.html', {})
 
     context = {
         'post': post
@@ -49,8 +55,13 @@ def create_post(request):
     return render(request, 'blog/create_post.html', context)
 
 def edit_post(request, id = None):
+    try:
 
-    post = get_object_or_404(Post, id=id)
+        post = get_object_or_404(Post, id=id)
+
+    except Http404:
+
+        return render(request, 'blog/404.html', {})
 
     if request.method =='POST':
 
@@ -72,8 +83,14 @@ def edit_post(request, id = None):
     return render(request, 'blog/create_post.html', context)
 
 def delete_post(request, id=None):
+    try:
 
-    post = get_object_or_404(Post, id=id)
+        post = get_object_or_404(Post, id=id)
+
+    except Http404:
+
+        return render(request, 'blog/404.html', {})
+
     post.delete()
 
     return redirect('blog:index')
